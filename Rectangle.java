@@ -21,7 +21,7 @@ public class Rectangle {
   // second constructor: 
   public Rectangle(double width, double height) {
     this(width, height, 0, 0);
-}
+  }
 
  // third constructor
   public Rectangle(){
@@ -35,6 +35,16 @@ public class Rectangle {
 	   originY += dy;
   }
 
+  public void scale(double scaleX, double scaleY) {
+    width = width*scaleX;
+    height = height*scaleY;
+  }
+
+  public void scale(double scaleBoth){
+    width = width*scaleBoth;
+    height = height*scaleBoth;
+  }
+
   // method: compute the area of the rectangle
   public double getArea() {
     return width * height;
@@ -45,4 +55,36 @@ public class Rectangle {
     return 2 * (width + height);
   }
   
-}
+  public boolean isOverlappedWith(Rectangle r){
+    double thisLeft   = this.originX;
+    double thisRight  = this.originX + this.width;
+    double thisBottom = this.originY;
+    double thisTop    = this.originY + this.height;
+
+    double rLeft   = r.originX;
+    double rRight  = r.originX + r.width;
+    double rBottom = r.originY;
+    double rTop    = r.originY + r.height;
+
+    if (thisRight <= rLeft ||
+        thisLeft >= rRight ||
+        thisTop <= rBottom ||
+        thisBottom >= rTop) {
+        return false;
+    }
+
+    return true;
+    }
+  public static boolean areOverlapping(Rectangle r1, Rectangle r2){
+    return r1.isOverlappedWith(r2);
+  }
+
+  public double calcRatio(){
+    return width/height;
+  }
+  public boolean isSquare() {
+    double ratio = calcRatio();
+    return (ratio >= 0.999 && ratio <= 1.001);
+  }
+  }
+
