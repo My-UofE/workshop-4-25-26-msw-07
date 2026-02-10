@@ -11,12 +11,23 @@ public class Rectangle {
   public static final int NUMBER_OF_SIDES = 4;
 
   // main constructor
-  public Rectangle(double w, double h, double oX, double oY) {
-    width = w;
-    height = h;
-    originX = oX;
-    originY = oY;
+  public Rectangle(double width, double height, double originX, double originY) {
+    this.width = width;
+    this.height = height;
+    this.originX = originX;
+    this.originY = originY;
   }
+
+  // second constructor: 
+  public Rectangle(double width, double height) {
+    this(width, height, 0, 0);
+}
+
+ // third constructor
+  public Rectangle(){
+    this(1, 1, 0, 0);
+  }
+  
 
   // method: move the rectangle
   public void move(double dx, double dy) {
